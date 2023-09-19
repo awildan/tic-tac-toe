@@ -26,7 +26,9 @@ export const Result = ({ winner = null, onNewGame }: IResult) => {
           )}
           <button
             type="button"
-            className={'bg-gray-800 text-slate-50 w-36 h-16 md:text-lg font-medium'}
+            className={
+              'bg-gray-800 text-slate-50 w-16 h-8 md:w-36 md:h-16 text-xs md:text-lg font-medium'
+            }
             onClick={onNewGame}
           >
             New Game
