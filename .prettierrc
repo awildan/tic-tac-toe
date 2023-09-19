@@ -1,4 +1,5 @@
 {
+  "importOrderSortSpecifiers": true,
   "singleQuote": true,
   "semi": true,
   "tabWidth": 2,
@@ -7,6 +8,5 @@
   "bracketSpacing": true,
   "arrowParens": "always",
   "printWidth": 100,
-  "endOfLine": "auto",
-  "importOrderSortSpecifiers": true
+  "endOfLine": "auto"
 }
