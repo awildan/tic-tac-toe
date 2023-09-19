@@ -1,6 +1,5 @@
 'use client';
 
-import RootLayout from '@/app/layout';
 import Board from '@/container/board/board';
 import { Result } from '@/container/win/result';
 import { TResult } from '@/container/win/result.types';
@@ -16,14 +15,10 @@ const Page = () => {
     router.refresh();
   };
 
-  return (
-    <RootLayout>
-      {winner ? (
-        <Result winner={winner} onNewGame={handleNewgame} />
-      ) : (
-        <Board setWinner={setWinner} />
-      )}
-    </RootLayout>
+  return winner ? (
+    <Result winner={winner} onNewGame={handleNewgame} />
+  ) : (
+    <Board setWinner={setWinner} />
   );
 };
 

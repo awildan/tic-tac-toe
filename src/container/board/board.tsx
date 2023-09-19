@@ -3,13 +3,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Box } from '@/components/box';
 import { TValue } from '@/components/box.types';
-import { TResult } from '../win/result.types';
-
-// TODO: Create dynamic board so board can 4x4, 5x5, etc.
-interface IBoard {
-  // boxAmount?: number;
-  setWinner: React.Dispatch<React.SetStateAction<TResult | undefined>>;
-}
+import { IBoard } from '@/container/board/board.types';
 
 const Board = ({ setWinner }: IBoard) => {
   /*
@@ -69,19 +63,19 @@ const Board = ({ setWinner }: IBoard) => {
   }, [boxValue, checkWinStatus]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen caret-transparent">
+    <div className={'flex items-center justify-center min-h-screen caret-transparent'}>
       <div>
-        <div className="flex">
+        <div className={'flex'}>
           <Box value={boxValue[0]} onClick={() => handleClickBox(0)} />
           <Box value={boxValue[1]} onClick={() => handleClickBox(1)} />
           <Box value={boxValue[2]} onClick={() => handleClickBox(2)} />
         </div>
-        <div className="flex">
+        <div className={'flex'}>
           <Box value={boxValue[3]} onClick={() => handleClickBox(3)} />
           <Box value={boxValue[4]} onClick={() => handleClickBox(4)} />
           <Box value={boxValue[5]} onClick={() => handleClickBox(5)} />
         </div>
-        <div className="flex">
+        <div className={'flex'}>
           <Box value={boxValue[6]} onClick={() => handleClickBox(6)} />
           <Box value={boxValue[7]} onClick={() => handleClickBox(7)} />
           <Box value={boxValue[8]} onClick={() => handleClickBox(8)} />
