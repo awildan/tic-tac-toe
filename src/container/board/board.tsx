@@ -3,13 +3,15 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Box } from '@/components/box';
 import { TValue } from '@/components/box.types';
+import { TResult } from '../win/result.types';
 
 // TODO: Create dynamic board so board can 4x4, 5x5, etc.
-// interface IProps {
-//   boxAmount?: number;
-// }
+interface IBoard {
+  // boxAmount?: number;
+  setWinner: React.Dispatch<React.SetStateAction<TResult | undefined>>;
+}
 
-const Board = () => {
+const Board = ({ setWinner }: IBoard) => {
   /*
    * Note : This preparation for dynamic board
    * const boxCount = Array.from(Array(boxAmount).keys());
@@ -19,8 +21,6 @@ const Board = () => {
 
   const [boxValue, setBoxValue] = useState<TValue[]>(Array(9).fill(null));
   const [isX, setIsX] = useState<boolean>(true);
-
-  console.log('boxValue', boxValue);
 
   const handleClickBox = (position: number) => {
     if (boxValue[position] != null) {
@@ -32,6 +32,10 @@ const Board = () => {
     setBoxValue([...newBoxValue]);
     setIsX(!isX);
   };
+
+  const isBoxfull = useCallback(() => {
+    return !boxValue.some((value) => value === null);
+  }, [boxValue]);
 
   const checkWinStatus = useCallback(() => {
     const winCondition = [
@@ -48,12 +52,15 @@ const Board = () => {
     for (let i = 0; i < winCondition.length; i++) {
       const [a, b, c] = winCondition[i];
       if (boxValue[a] && boxValue[a] === boxValue[b] && boxValue[a] === boxValue[c]) {
-        alert(`Player ${boxValue[a]} is Win!`);
-        return true;
+        setWinner(boxValue[a]);
+        return;
       }
     }
-    return false;
-  }, [boxValue]);
+
+    if (isBoxfull()) {
+      setWinner('Draw');
+    }
+  }, [boxValue, setWinner, isBoxfull]);
 
   useEffect(() => {
     if (boxValue) {
